@@ -75,3 +75,16 @@
     padding: 5px;
     margin: 5px;
   }
+  .btn-li{
+    width: 150px;
+    margin-left: 50px;
+    color: rgb(8, 49, 84);
+  }
+  .element{
+    margin: auto;
+    width: 70%;
+  }
+  li {
+    display: flex; 
+    align-items: center; 
+  }
