@@ -14,17 +14,33 @@
   var userList = document.getElementById("users");
   const item = document.createElement('li');
   item.setAttribute('class','element');
-  const button =document.createElement('button');
-  button.setAttribute('class','btn-li');
-  
-  button.textContent="delete";
-  button.addEventListener("click",function(){
+  const deleteButton =document.createElement('button');
+  deleteButton.setAttribute('class','btn-li');
+  deleteButton.textContent="delete";
+  const editButton =document.createElement('input');
+  editButton.type='button';
+  editButton.value="edit";
+  editButton.onclick=()=>{
+    localStorage.removeItem("userDetails");
+    parentItem.removeChild(item);
+    document.getElementById('name').value=userDetails.name;
+    document.getElementById('email').value=userDetails.email;
+  }
+  deleteButton.addEventListener("click",function(){
     userList.removeChild(item);
     localStorage.removeItem("userDetails");
   });
   item.textContent=userDetails.name+" "+userDetails.email;
-  item.appendChild(button);
+  item.appendChild(deleteButton);
+  item.appendChild(editButton);
   const parentItem=document.getElementById('users');
   parentItem.appendChild(item);
  }
- 
+ function editUserDetails(userDetails, listItem) {
+  var name = listItem.querySelector('.name').textContent;
+  var email = listItem.querySelector('.email').textContent;
+  
+  // Populate the input fields with the extracted values
+  document.getElementById('name').value = name;
+  document.getElementById('email').value = email;
+}
