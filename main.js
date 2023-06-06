@@ -10,8 +10,9 @@
     //storedObjects.push(userDetails);
   axios.post("https://crudcrud.com/api/874a145083894416a44eb349b611fc5c/appointmentData", userDetails)
    .then((response)=>{
-    showUserOnScreen(response.data)
+    
     console.log(response)
+  
    })
    .catch((error)=>{
     console.log(error)
@@ -19,6 +20,21 @@
 
     showUserOnScreen(userDetails);
  }
+
+window.addEventListener("DOMContentLoaded",()=>{
+    axios.get("https://crudcrud.com/api/874a145083894416a44eb349b611fc5c/appointmentData")
+     .then((response)=>{
+       console.log(response)
+       for(var i=0;i<response.data.length;i++){
+        showUserOnScreen(response.data[i]);
+      }
+     })
+     .catch((error)=>{
+       console.log(error)
+     })
+})
+
+
  function showUserOnScreen(userDetails){
  
   var userList = document.getElementById("users");
