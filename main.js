@@ -2,11 +2,21 @@
     event.preventDefault();
     var email = document.getElementById("email").value;
     var name = document.getElementById("name").value;
+   // var storedObjects = JSON.parse(localStorage.getItem("storedObjects")) || [];
     var userDetails = {
         name: name,
         email: email
     };
-    localStorage.setItem("userDetails",JSON.stringify(userDetails));
+    //storedObjects.push(userDetails);
+  axios.post("https://crudcrud.com/api/874a145083894416a44eb349b611fc5c/appointmentData", userDetails)
+   .then((response)=>{
+    showUserOnScreen(response.data)
+    console.log(response)
+   })
+   .catch((error)=>{
+    console.log(error)
+   })
+
     showUserOnScreen(userDetails);
  }
  function showUserOnScreen(userDetails){
@@ -14,6 +24,7 @@
   var userList = document.getElementById("users");
   const item = document.createElement('li');
   item.setAttribute('class','element');
+
   const deleteButton =document.createElement('button');
   deleteButton.setAttribute('class','btn-li');
   deleteButton.textContent="delete";
