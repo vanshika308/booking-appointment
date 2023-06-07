@@ -53,6 +53,14 @@ function showUserOnScreen(userDetails) {
   editButton.type = 'button';
   editButton.value = "edit";
   editButton.onclick = () => {
+    axios.delete("https://crudcrud.com/api/663c8ab428a344cba11815b9dac23925/appointmentData/" + userDetails._id)
+      .then((response) => {
+        console.log(response);
+        userList.removeChild(item);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     editUserDetails(userDetails, item);
   };
 
@@ -66,7 +74,10 @@ function editUserDetails(userDetails, listItem) {
   var name = userDetails.name;
   var email = userDetails.email;
 
+
   // Populate the input fields with the extracted values
   document.getElementById('name').value = name;
   document.getElementById('email').value = email;
+  
 }
+  
